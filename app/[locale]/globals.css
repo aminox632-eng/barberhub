@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { @apply bg-ink text-white antialiased font-sans; }
+html[lang='ar'] body, html[lang='ar'] .font-display { font-family: 'Cairo', system-ui, sans-serif; }
+html[lang='zh'] body, html[lang='zh'] .font-display { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
+::selection { background: #D4AF37; color: #0A0A0A; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-gold { @apply btn bg-gold text-ink hover:bg-gold-light; }
+  .btn-ghost { @apply btn border border-line text-white hover:border-gold hover:text-gold; }
+  .btn-danger { @apply btn border border-red-900 text-red-400 hover:bg-red-950; }
+  .input { @apply w-full rounded-md border border-line bg-ink-800 px-3.5 py-2.5 text-sm text-white placeholder:text-neutral-500 focus:border-gold focus:outline-none; }
+  .label { @apply mb-1.5 block text-sm text-neutral-300; }
+  .card { @apply rounded-xl border border-line bg-ink-800; }
+  .chip { @apply rounded-full border border-line px-3 py-1 text-xs text-neutral-300; }
+  .chip-on { @apply border-gold bg-gold text-ink; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+}
+
+/* Barber pole: the one decorative motion on the site (hero) */
+.pole {
+  background-image: repeating-linear-gradient(-45deg, #D4AF37 0 14px, #0A0A0A 14px 28px, #f5f5f0 28px 42px, #0A0A0A 42px 56px);
+  background-size: 80px 80px;
+  animation: pole 2.4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .pole { animation: none; } }
+
+.skeleton { position: relative; overflow: hidden; @apply rounded-md bg-ink-700; }
+.skeleton::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent); animation: shimmer 1.4s infinite; }
+[dir='rtl'] .skeleton::after { animation-direction: reverse; }
+
+.leaflet-container { background: #141414; font-family: inherit; }
+.gold-pin { width: 26px; height: 26px; border-radius: 50% 50% 50% 0; background: #D4AF37; transform: rotate(-45deg); border: 3px solid #0A0A0A; box-shadow: 0 0 0 2px #D4AF37; }
